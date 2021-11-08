@@ -11,6 +11,7 @@ Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
 
 """
 
+st.selectbox('Pick one', ['cats', 'dogs', 'foxes', 'hounds', 'ants', 'polar bears', '123456', '44444 john doe'])
 
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
