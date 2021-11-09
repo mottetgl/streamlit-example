@@ -1,19 +1,16 @@
-from collections import namedtuple
-import altair as alt
-import math
 import pandas as pd
+import numpy as np
 import streamlit as st
 
-"""
-# Welcome to Streamlit!
+pr = pd.read_csv('pr_2018_anomaly_details.csv')
+states = np.unique(pr.state)
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-
-"""
+st.multiselect('Select', states)
 
 st.selectbox('Pick one', ['cats', 'dogs', 'foxes', 'hounds', 'ants', 'polar bears', '123456', '44444 john doe'])
 
 with st.echo(code_location='below'):
+    
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
     num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
 
