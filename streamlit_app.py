@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as st
 
 pr = pd.read_csv('pr_2018_anomaly_details.csv')
-pr['key'] = pr['npi'] + pr['first_name'] + pr['last_name']
+pr['key'] = pr['npi'].astype(str) + pr['first_name'] + pr['last_name']
 states = np.unique(pr.state)
 
 # select the state
