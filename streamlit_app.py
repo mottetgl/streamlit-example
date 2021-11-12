@@ -9,4 +9,9 @@ states = np.unique(pr.state)
 sel_states = st.multiselect('Select States', states)
 st.write(sel_states)
 
-pr[pr.state.isin(states)]
+# limit to state and cache results
+@st.cache
+def filter_state(pr, states):
+  return(pr[pr.state.isin(states)])
+
+filter_state(pr, states)
