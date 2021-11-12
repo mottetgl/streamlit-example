@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as st
 
 pr = pd.read_csv('pr_2018_anomaly_details.csv')
+pr['key'] = pr['npi'] + pr['first_name'] + pr['last_name']
 states = np.unique(pr.state)
 
 # select the state
@@ -16,3 +17,7 @@ def filter_state(pr, states):
 
 pr_states = filter_state(pr, states)
 st.write(pr_states)
+
+@st.cache
+def filter_npi(pr, provider_key):
+  return(pr[pr.provider_key == provider_key])
