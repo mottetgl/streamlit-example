@@ -8,3 +8,5 @@ states = np.unique(pr.state)
 # select the state
 sel_states = st.multiselect('Select States', states)
 st.write(sel_states)
+
+pr[pr.state.isin(states)]
