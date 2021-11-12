@@ -14,4 +14,5 @@ st.write(sel_states)
 def filter_state(pr, states):
   return(pr[pr.state.isin(states)])
 
-filter_state(pr, states)
+pr_states = filter_state(pr, states)
+st.write(pr_states)
