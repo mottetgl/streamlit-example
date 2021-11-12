@@ -4,13 +4,10 @@ import streamlit as st
 
 pr = pd.read_csv('pr_2018_anomaly_details.csv')
 pr['key'] = pr['npi'].astype(str) + pr['first_name'] + pr['last_name']
+
+# select the state and chache results
 states = np.unique(pr.state)
-
-# select the state
-sel_states = st.multiselect('Select States', states)
-st.write(sel_states)
-
-# limit to state and cache results
+sel_states = st.multiselect('Select states', states)
 @st.cache
 def filter_state(pr, states):
   return(pr[pr.state.isin(states)])
@@ -18,6 +15,12 @@ def filter_state(pr, states):
 pr_states = filter_state(pr, states)
 st.write(pr_states)
 
+# select an npi and cache results
+provider_keys = np.unique(pr_state.provider_key)
+sel_provider_key = st.selectbox('Select provider', provider_keys)
 @st.cache
 def filter_npi(pr, provider_key):
   return(pr[pr.provider_key == provider_key])
+
+pr_npi = filter_npi(pr_states, sel_provider_key)
+st.write(pr_npi)
