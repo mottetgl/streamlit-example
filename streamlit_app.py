@@ -2,26 +2,31 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-pr = pd.read_csv('pr_2018_anomaly_details.csv')
-pr['provider_key'] = pr['npi'].astype(str) + pr['first_name'] + pr['last_name']
-
-# select the state and chache results
-states = np.unique(pr.state)
+infile = 'pr_2018_anomaly_details.csv'
+states = ['AK', 'AL', 'AP', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
+       'GA', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+       'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+       'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+       'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 sel_states = st.multiselect('Select states', states)
-st.write(sel_states)
-@st.cache
-def filter_state(df, states):
-  return(df.loc[df.state.isin(states), :])
 
-pr_state = filter_state(pr, sel_states)
-st.write(pr_state)
+# load the data for selected states only
+@st.cache
+def filter_state(infile, states):
+  df = pd.read_csv(infile)
+  df.loc[df.state.isin(states), :]
+  df['provider_key'] = df['npi'].astype(str) + df['first_name'] + df['last_name']
+  return()
+
+pr = filter_state(infile, sel_states)
+st.write(pr)
 
 # select an npi and cache results
-provider_keys = np.unique(pr_state.provider_key)
+provider_keys = np.unique(pr.provider_key)
 sel_provider_key = st.selectbox('Select provider', provider_keys)
 @st.cache
 def filter_npi(df, provider_key):
   return(df[df.provider_key == provider_key])
 
-pr_npi = filter_npi(pr_state, sel_provider_key)
+pr_npi = filter_npi(pr, sel_provider_key)
 st.write(pr_npi)
