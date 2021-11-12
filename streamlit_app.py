@@ -13,7 +13,7 @@ def filter_state(pr, states):
   return(pr[pr.state.isin(states)])
 
 pr_state = filter_state(pr, states)
-st.write(pr_states)
+st.write(pr_state)
 
 # select an npi and cache results
 provider_keys = np.unique(pr_state.provider_key)
