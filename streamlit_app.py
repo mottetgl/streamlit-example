@@ -16,7 +16,7 @@ def filter_state(infile, states):
   df = pd.read_csv(infile)
   df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + df['first_name'] + df['last_name']
-  return()
+  return(df)
 
 pr = filter_state(infile, sel_states)
 st.write(pr)
