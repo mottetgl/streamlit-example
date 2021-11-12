@@ -12,7 +12,7 @@ sel_states = st.multiselect('Select states', states)
 def filter_state(pr, states):
   return(pr[pr.state.isin(states)])
 
-pr_states = filter_state(pr, states)
+pr_state = filter_state(pr, states)
 st.write(pr_states)
 
 # select an npi and cache results
@@ -22,5 +22,5 @@ sel_provider_key = st.selectbox('Select provider', provider_keys)
 def filter_npi(pr, provider_key):
   return(pr[pr.provider_key == provider_key])
 
-pr_npi = filter_npi(pr_states, sel_provider_key)
+pr_npi = filter_npi(pr_state, sel_provider_key)
 st.write(pr_npi)
