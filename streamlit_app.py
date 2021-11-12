@@ -13,7 +13,7 @@ st.write(sel_states)
 def filter_state(df, states):
   return(df.loc[df.state.isin(states), :])
 
-pr_state = filter_state(pr, states)
+pr_state = filter_state(pr, sel_states)
 st.write(pr_state)
 
 # select an npi and cache results
