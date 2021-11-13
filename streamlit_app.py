@@ -15,7 +15,7 @@ sel_states = st.multiselect('Select states', states)
 def filter_state(infile, states):
   df = pd.read_csv(infile)
   df = df.loc[df.state.isin(states), :]
-  df['provider_key'] = df['npi'].astype(str) + df['first_name'] + df['last_name']
+  df['provider_key'] = df['npi'].astype(str) + ' ' + df['specialty'] + ' ' + df['first_name'] + ' ' + df['last_name']
   return(df)
 
 pr = filter_state(infile, sel_states)
