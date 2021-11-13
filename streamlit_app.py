@@ -22,7 +22,7 @@ pr = filter_state(infile, sel_states)
 st.write(pr)
 
 # select an npi and cache results
-provider_keys = pr.groupby(['provider_key'])['total_allowed'].sum().reset_index()['provider_key']
+provider_keys = pr.groupby(['provider_key'])['npi_allowed'].max().reset_index().sort_values(by = 'npi_allowed', asc = False)['provider_key'] 
 sel_provider_key = st.selectbox('Select provider', provider_keys)
 @st.cache
 def filter_npi(df, provider_key):
