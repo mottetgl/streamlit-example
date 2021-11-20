@@ -31,7 +31,6 @@ def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
   return(df)
 pr_phys = filter_specialty(pr_phys, sel_specialties)
-st.write(pr_phys.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']])
 
 # select an npi and cache results
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
@@ -41,4 +40,5 @@ def filter_npi(df, provider_key):
   return(df[df.provider_key == provider_key])
 pr_phys_one = filter_npi(pr_phys, sel_provider_key)
 
-st.write(pr_phys_one)
+# display aggregate provider info
+st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']])
