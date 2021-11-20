@@ -21,7 +21,7 @@ def filter_state(infile, states):
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   return(df)
-pr = filter_state(pr_detail_infile, sel_states)
+pr_phys = filter_state(pr_phys_infile, sel_states)
 st.write(pr)
 
 # select an npi and cache results
@@ -30,6 +30,6 @@ sel_provider_key = st.selectbox('Select provider', provider_keys)
 @st.cache
 def filter_npi(df, provider_key):
   return(df[df.provider_key == provider_key])
+pr_phys_one = filter_npi(pr_phys, sel_provider_key)
 
-pr_npi = filter_npi(pr, sel_provider_key)
 st.write(pr_npi)
