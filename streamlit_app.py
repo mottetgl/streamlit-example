@@ -26,13 +26,12 @@ pr_phys = filter_state(pr_phys_infile, sel_states)
 # filter down to selected specialties
 active_specialties = pr_phys.specialty.unique()
 sel_specialties = st.multiselect('Select specialties', active_specialties)
-st.write(active_specialties)
 @st.cache
 def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
   return(df)
 pr_phys = filter_specialty(pr_phys, sel_specialties)
-st.write(pr_phys)
+st.write(pr_phys.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']])
 
 # select an npi and cache results
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
