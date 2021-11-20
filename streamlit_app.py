@@ -25,7 +25,7 @@ def filter_state(infile, states):
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
-st.map(pr_phys)
+st.map(pr_phys[['lat', 'lon']])
 
 # filter down to selected specialties
 @st.cache
