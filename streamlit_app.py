@@ -25,7 +25,7 @@ def filter_state(infile, states):
                         "total_allowed": "${:20,.0f}"})
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
-
+st.write(pr_phys)
 
 
 # filter down to selected specialties
