@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
+import plotly.express as px
 
 pr_detail_infile = 'pr_2018_anomaly_details.csv'
 pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
@@ -25,8 +26,6 @@ def filter_state(infile, states):
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
-st.map(pr_phys[['lat', 'lon']])
-
 # filter down to selected specialties
 @st.cache
 def filter_specialty(df, specialties):
@@ -37,6 +36,13 @@ if all:
   active_specialties = pr_phys.specialty.unique()
   sel_specialties = st.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
+
+fig = px.scatter(pr_phys,
+                x='lat',
+                y='lon',
+                hover_name='last_name',
+                title='TITLE')
+st.plotly_chart(fig)
 
 # select an npi and cache results
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
