@@ -28,7 +28,7 @@ active_specialties = pr_phys.specialty.unique()
 sel_specialties = st.multiselect('Select specialties', active_specialties)
 st.write(active_specialties)
 @st.cache
-def filter_specialty(infile, specialties):
+def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
   return(df)
 pr_phys = filter_specialty(pr_phys, sel_specialties)
