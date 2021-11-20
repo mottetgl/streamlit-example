@@ -22,7 +22,6 @@ def filter_state(infile, states):
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
-st.write(pr_phys.style.set_precision(2))
 
 # filter down to selected specialties
 @st.cache
@@ -44,4 +43,4 @@ def filter_npi(df, provider_key):
 pr_phys_one = filter_npi(pr_phys, sel_provider_key)
 
 # display aggregate provider info
-st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']])
+st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.set_precision(0))
