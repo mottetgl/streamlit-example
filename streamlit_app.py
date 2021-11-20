@@ -24,7 +24,7 @@ def filter_state(infile, states):
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
 # filter down to selected specialties
-active_specialties = pr_phys.specialties.unique()
+active_specialties = pr_phys.specialty.unique()
 sel_specialties = st.multiselect('Select states', active_specialties)
 st.write(active_specialties)
 @st.cache
