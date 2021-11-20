@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-# import plotly.express as px
+import plotly.express as px
 
 pr_detail_infile = 'pr_2018_anomaly_details.csv'
 pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
