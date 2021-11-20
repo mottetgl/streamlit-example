@@ -37,12 +37,12 @@ if all:
   sel_specialties = st.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
-fig = px.scatter(pr_phys,
-                x='lat',
-                y='lon',
-                hover_name='last_name',
-                title='TITLE')
-st.plotly_chart(fig)
+# fig = px.scatter(pr_phys,
+#                 x='lat',
+#                 y='lon',
+#                 hover_name='last_name',
+#                 title='TITLE')
+# st.plotly_chart(fig)
 
 # select an npi and cache results
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
