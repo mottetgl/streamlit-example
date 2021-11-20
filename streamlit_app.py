@@ -20,12 +20,13 @@ def filter_state(infile, states):
   df = pd.read_csv(infile)
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
+  # apply data formats
+  df = df.style.format({"total_billed": "${:20,.0f}",
+                        "total_allowed": "${:20,.0f}"})
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
-# apply data formats
-pr_phys = pr_phys.style.format({"total_billed": "${:20,.0f}", 
-                                "total_allowed": "${:20,.0f}"})
+
 
 # filter down to selected specialties
 @st.cache
