@@ -2,8 +2,11 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-pr_infile = 'pr_2018_anomaly_details.csv'
-rx_infile = 'rx_2018_anomaly_details.csv'
+pr_detail_infile = 'pr_2018_anomaly_details.csv'
+pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
+rx_detail_infile = 'rx_2018_anomaly_details.csv'
+rx_phys_infile = 'rx_2018_anomaly_physicians.csv'
+
 states = ['AK', 'AL', 'AP', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
        'GA', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
@@ -18,8 +21,7 @@ def filter_state(infile, states):
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   return(df)
-
-pr = filter_state(pr_infile, sel_states)
+pr = filter_state(pr_detail_infile, sel_states)
 st.write(pr)
 
 # select an npi and cache results
