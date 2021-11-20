@@ -25,7 +25,7 @@ pr_phys = filter_state(pr_phys_infile, sel_states)
 st.write(pr_phys)
 
 # select an npi and cache results
-provider_keys = pr.groupby(['provider_key', 'npi_allowed']).size().reset_index().sort_values(by = 'npi_allowed', ascending = False)['provider_key'] 
+provider_keys = pr_phys.groupby(['provider_key', 'npi_allowed']).size().reset_index().sort_values(by = 'npi_allowed', ascending = False)['provider_key'] 
 sel_provider_key = st.selectbox('Select provider', provider_keys)
 @st.cache
 def filter_npi(df, provider_key):
