@@ -25,7 +25,7 @@ pr_phys = filter_state(pr_phys_infile, sel_states)
 
 # apply data formats
 pr_phys = pr_phys.style.format({"total_billed": "${:20,.0f}", 
-                                "total_allowed": "${:20,.0f}")
+                                "total_allowed": "${:20,.0f}"})
 
 # filter down to selected specialties
 @st.cache
