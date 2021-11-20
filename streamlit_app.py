@@ -19,7 +19,7 @@ def filter_state(infile, states):
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   return(df)
 
-pr = filter_state(infile, sel_states)
+pr = filter_state(pr_infile, sel_states)
 st.write(pr)
 
 # select an npi and cache results
