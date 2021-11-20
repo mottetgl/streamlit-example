@@ -26,6 +26,8 @@ pr_phys = filter_state(pr_phys_infile, sel_states)
 # filter down to selected specialties
 active_specialties = pr_phys.specialty.unique()
 sel_specialties = st.multiselect('Select specialties', active_specialties)
+if len(sel_specialties < 1):
+  sel_specialties = active_specialties
 @st.cache
 def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
