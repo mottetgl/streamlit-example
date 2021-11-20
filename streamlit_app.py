@@ -22,6 +22,16 @@ def filter_state(infile, states):
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
+
+# filter down to selected specialties
+active_specialties = pr_phys.specialties.unique()
+sel_specialties = st.multiselect('Select states', active_specialties)
+st.write(active_specialties)
+@st.cache
+def filter_specialty(infile, specialties):
+  df = df.loc[df.specialty.isin(specialties), :]
+  return(df)
+pr_phys = filter_specialties(pr_phys, sel_specialties)
 st.write(pr_phys)
 
 # select an npi and cache results
