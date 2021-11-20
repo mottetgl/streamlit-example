@@ -23,6 +23,9 @@ def filter_state(infile, states):
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
+# apply data formats
+pr_phys['total_allowed'].apply(lambda x: "${:.1f}".format(x))
+
 # filter down to selected specialties
 @st.cache
 def filter_specialty(df, specialties):
