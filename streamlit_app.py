@@ -7,6 +7,10 @@ pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
 rx_detail_infile = 'rx_2018_anomaly_details.csv'
 rx_phys_infile = 'rx_2018_anomaly_physicians.csv'
 
+def format_currency(df):
+  df.style.format({"total_billed": "${:20,.0f}",
+                   "total_allowed": "${:20,.0f}"})
+
 states = ['AK', 'AL', 'AP', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
        'GA', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
@@ -21,11 +25,9 @@ def filter_state(infile, states):
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   # apply data formats
-  df = df.style.format({"total_billed": "${:20,.0f}",
-                        "total_allowed": "${:20,.0f}"})
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
-st.write(pr_phys)
+st.write(format_currency(pr_phys))
 
 
 # filter down to selected specialties
