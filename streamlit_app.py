@@ -14,7 +14,7 @@ def read_file(filename):
     with fs.open(filename) as f:
         return f.read().decode("utf-8")
 
-content = read_file("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
+content = pd.read_csv("streamlit-anomalis/streamlit_pr_2018_details.csv")
 
 pr_detail_infile = 'pr_2018_anomaly_details.csv'
 pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
