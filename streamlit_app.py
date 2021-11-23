@@ -8,17 +8,10 @@ import os
 # Create connection object.
 fs = s3fs.S3FileSystem(anon=False)
 
-# Retrieve file contents.
-@st.cache
-def read_pr_details(filename):
-    return pd.read_csv(fs.open(filename))
-
-content = read_pr_details("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
-
 pr_detail_infile = 'streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv'
 pr_phys_infile = 'streamlit-anomalis/streamlit_pr_2018_anomaly_physicians.csv'
-rx_detail_infile = 'rx_2018_anomaly_details.csv'
-rx_phys_infile = 'rx_2018_anomaly_physicians.csv'
+rx_detail_infile = 'streamlit-anomalis/streamlit_rx_2018_anomaly_details.csv'
+rx_phys_infile = 'streamlit-anomalis/streamlit_rx_2018_anomaly_physicians.csv'
 
 states = ['AK', 'AL', 'AP', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
        'GA', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
