@@ -1,5 +1,4 @@
 pandas
 streamlit
 plotly.express
-s3fs==2021.11.0
-os
+s3fs
