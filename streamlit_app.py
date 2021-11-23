@@ -12,9 +12,9 @@ fs = s3fs.S3FileSystem(anon=False)
 @st.cache
 def read_file(filename):
     with fs.open(filename) as f:
-        return f.read().decode("utf-8")
+        return pd.read_csv(f)
 
-content = pd.read_csv(read_file("streamlit-anomalis/streamlit_pr_2018_details.csv"))
+content = read_file("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
 
 pr_detail_infile = 'pr_2018_anomaly_details.csv'
 pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
