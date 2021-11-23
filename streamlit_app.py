@@ -10,12 +10,12 @@ fs = s3fs.S3FileSystem(anon=False)
 
 # Retrieve file contents.
 @st.cache
-def read_file(filename):
+def read_pr_details(filename):
     return pd.read_csv(fs.open(filename))
 
-content = read_file("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
+content = read_pr_details("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
 
-pr_detail_infile = 'pr_2018_anomaly_details.csv'
+pr_detail_infile = 'streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv'
 pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
 rx_detail_infile = 'rx_2018_anomaly_details.csv'
 rx_phys_infile = 'rx_2018_anomaly_physicians.csv'
@@ -29,8 +29,8 @@ sel_states = st.multiselect('Select states', states)
 
 # load the data for selected states only
 @st.cache
-def filter_state(infile, states):
-  df = pd.read_csv(infile)
+def filter_state(filename, states):
+  df = pd.read_csv(fs.open(filename))
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   df.rename(columns = {'centroid_lat': 'lat', 'centroid_long': 'lon'}, inplace = True)
