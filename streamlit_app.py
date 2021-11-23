@@ -5,6 +5,17 @@ import plotly.express as px
 import s3fs
 import os
 
+# Create connection object.
+fs = s3fs.S3FileSystem(anon=False)
+
+# Retrieve file contents.
+@st.cache
+def read_file(filename):
+    with fs.open(filename) as f:
+        return f.read().decode("utf-8")
+
+content = read_file("streamlit-anomalis/myfile.csv")
+
 pr_detail_infile = 'pr_2018_anomaly_details.csv'
 pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
 rx_detail_infile = 'rx_2018_anomaly_details.csv'
