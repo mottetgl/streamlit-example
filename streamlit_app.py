@@ -42,7 +42,7 @@ if all:
   sel_specialties = st.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
-#px.set_mapbox_access_token(open(".mapbox_token").read())
+px.set_mapbox_access_token(open(".mapbox_token").read())
 fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon")
 #, color="specialty", size="total_allowed", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10
 st.plotly_chart(fig)
