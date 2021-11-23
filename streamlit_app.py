@@ -11,8 +11,7 @@ fs = s3fs.S3FileSystem(anon=False)
 # Retrieve file contents.
 @st.cache
 def read_file(filename):
-    with fs.open(filename) as f:
-        return pd.read_csv(f)
+    return pd.read_csv(fs.open(filename))
 
 content = read_file("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
 
