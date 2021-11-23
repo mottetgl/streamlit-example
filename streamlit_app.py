@@ -16,7 +16,7 @@ def read_pr_details(filename):
 content = read_pr_details("streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv")
 
 pr_detail_infile = 'streamlit-anomalis/streamlit_pr_2018_anomaly_details.csv'
-pr_phys_infile = 'pr_2018_anomaly_physicians.csv'
+pr_phys_infile = 'streamlit-anomalis/streamlit_pr_2018_anomaly_physicians.csv'
 rx_detail_infile = 'rx_2018_anomaly_details.csv'
 rx_phys_infile = 'rx_2018_anomaly_physicians.csv'
 
