@@ -5,9 +5,6 @@ import plotly.express as px
 import s3fs
 import os
 
-
-
-
 # Create connection object.
 fs = s3fs.S3FileSystem(anon=False)
 
@@ -54,6 +51,13 @@ st.map(pr_phys)
 
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
 st.write(st.secrets["MAPBOX_TOKEN"])
+
+fig = px.scatter_mapbox(pr_phys,
+                        lat=pr_phys.lat,
+                        lon=pr_phys.lon,
+                        hover_name="last_name",
+                        zoom=1)
+st.plotly_chart(fig)
 # figure = px.scatter_mapbox(pr_phys,
 #                         lat="lat",
 #                         lon="lon",
@@ -63,8 +67,6 @@ st.write(st.secrets["MAPBOX_TOKEN"])
 #                         color_continuous_scale=px.colors.cyclical.IceFire,
 #                         size_max=15,
 #                         zoom=10)
-fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon")
-st.plotly_chart(fig)
 
 # select an npi and cache results
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
