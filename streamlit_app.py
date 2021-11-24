@@ -30,7 +30,7 @@ def filter_state(filename, states):
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   df.rename(columns = {'centroid_lat': 'lat', 'centroid_long': 'lon'}, inplace = True)
-  df = df[!df.zip.isna()]
+  df = df[-df.zip.isna()]
   df.index = [""] * len(df)
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
