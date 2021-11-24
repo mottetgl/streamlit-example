@@ -45,6 +45,7 @@ if all:
   sel_specialties = st.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
+st.write(pr_phys)
 fig = px.scatter_geo(pr_phys, lat = 'lat', lon = 'lon')
 st.plotly_chart(fig)
 
