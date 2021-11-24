@@ -31,8 +31,6 @@ def filter_state(filename, states):
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
-st.write(type(pr_phys))
-
 # filter down to selected specialties
 @st.cache
 def filter_specialty(df, specialties):
@@ -49,11 +47,6 @@ px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
 #                   color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
 #fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon")
 #, color="specialty", size="total_allowed", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10
-fig = px.scatter(pr_phys,
-                x='lat',
-                y='lon',
-                hover_name='last_name',
-                title='title')
 st.plotly_chart(fig)
 
 # select an npi and cache results
