@@ -38,7 +38,7 @@ def filter_state(filename, states):
   df.index = [""] * len(df)
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
-st.write(pr_phys.dtypes)
+st.write(pr_phys.info())
 st.write(pr_phys)
 
 # filter down to selected specialties
