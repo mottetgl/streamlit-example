@@ -45,7 +45,7 @@ if all:
   sel_specialties = st.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
-fig = px.scatter_geo(pr_phys, lat = 'lat', lon = 'lon', size="total_allowed")
+fig = px.scatter_geo(pr_phys, lat = 'lat', lon = 'lon')
 st.plotly_chart(fig)
 
 # px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
