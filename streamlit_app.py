@@ -43,6 +43,7 @@ if all:
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
+st.write(st.secrets["MAPBOX_TOKEN"])
 fig = px.scatter_mapbox(pr_phys,
                         lat="lat",
                         lon="lon",
