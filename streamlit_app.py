@@ -43,10 +43,15 @@ if all:
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
-fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon",     color="specialty", size="total_allowed",
-                  color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
+# fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon",     color="specialty", size="total_allowed",
+#                   color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
 #fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon")
 #, color="specialty", size="total_allowed", color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10
+fig = px.scatter(pr_phys,
+                x='lat',
+                y='lon',
+                hover_name='last_name',
+                title='title')
 st.plotly_chart(fig)
 
 # select an npi and cache results
