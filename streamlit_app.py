@@ -34,8 +34,6 @@ def filter_state(filename, states):
   df.index = [""] * len(df)
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
-st.write(pr_phys.info())
-st.write(pr_phys)
 
 # filter down to selected specialties
 @st.cache
@@ -66,7 +64,7 @@ st.write(st.secrets["MAPBOX_TOKEN"])
 #                         size_max=15,
 #                         zoom=10)
 fig = px.scatter_mapbox(pr_phys, lat="lat", lon="lon")
-st.plotly_chart(figure)
+st.plotly_chart(fig)
 
 # select an npi and cache results
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
