@@ -31,6 +31,8 @@ def filter_state(filename, states):
   return(df)
 pr_phys = filter_state(pr_phys_infile, sel_states)
 
+st.write(pr_phys.dtypes)
+
 # filter down to selected specialties
 @st.cache
 def filter_specialty(df, specialties):
