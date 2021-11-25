@@ -26,7 +26,6 @@ def filter_state(filename, states):
   df = pd.read_csv(fs.open(filename))
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
-  df.rename(columns = {'centroid_lat': 'lat', 'centroid_long': 'lon'}, inplace = True)
   df = df[-df.zip.isna()] # REMINDER!!! EXCLUDING ROWS WITHOUT A ZIP CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   df.index = [""] * len(df)
   return(df)
@@ -48,8 +47,8 @@ st.write(pr_phys)
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
 st.write(st.secrets["MAPBOX_TOKEN"])
 fig = px.scatter_mapbox(pr_phys,
-                        lat=pr_phys.lat,
-                        lon=pr_phys.lon,
+                        lat=pr_phys.centroid_lat,
+                        lon=pr_phys.centroid_lon,
                         size = 'total_allowed',
                         hover_name="last_name",
                         zoom=1)
