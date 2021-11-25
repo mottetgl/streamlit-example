@@ -47,11 +47,17 @@ st.write(pr_phys)
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
 st.write(st.secrets["MAPBOX_TOKEN"])
 fig = px.scatter_mapbox(pr_phys,
-                        lat=pr_phys.centroid_lat,
-                        lon=pr_phys.centroid_lon,
+                        lat = pr_phys.centroid_lat,
+                        lon = pr_phys.centroid_lon,
                         size = 'total_allowed',
-                        hover_name= ['first_name', 'last_name'],
+                        custom_data = ['first_name', 'last_name', 'specialty'],
                         zoom=1)
+fig.update_traces(
+    hovertemplate="<br>".join([
+        "Name: %{first_name} %{last_name}",
+        "Specialty: %{specialty}",
+    ])
+)
 st.plotly_chart(fig)
 # figure = px.scatter_mapbox(pr_phys,
 #                         lat="lat",
