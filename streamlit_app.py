@@ -50,7 +50,7 @@ fig = px.scatter_mapbox(pr_phys,
                         lat=pr_phys.centroid_lat,
                         lon=pr_phys.centroid_lon,
                         size = 'total_allowed',
-                        hover_name="last_name",
+                        hover_name= ['first_name', 'last_name'],
                         zoom=1)
 st.plotly_chart(fig)
 # figure = px.scatter_mapbox(pr_phys,
