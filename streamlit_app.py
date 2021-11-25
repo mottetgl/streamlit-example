@@ -54,8 +54,8 @@ fig = px.scatter_mapbox(pr_phys,
                         zoom=1)
 fig.update_traces(
     hovertemplate="<br>".join([
-        "Name: %{first_name} %{last_name}",
-        "Specialty: %{specialty}",
+        "Name: %{custom_data[0]} %{custom_data[1]}",
+        "Specialty: %{custom_data[2]}",
     ])
 )
 st.plotly_chart(fig)
