@@ -50,6 +50,7 @@ st.write(st.secrets["MAPBOX_TOKEN"])
 fig = px.scatter_mapbox(pr_phys,
                         lat=pr_phys.lat,
                         lon=pr_phys.lon,
+                        size = 'total_allowed',
                         hover_name="last_name",
                         zoom=1)
 st.plotly_chart(fig)
