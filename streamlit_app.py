@@ -57,7 +57,7 @@ fig.update_traces(
         'Name:      %{customdata[0]} %{customdata[1]}',
         'Specialty: %{customdata[2]}',
         'Location:  %{customdata[3]}, %{customdata[4]} %{customdata[5]}',
-        'Street:     %{customdata[6]}',
+        'Street:      %{customdata[6]}',
     ])
 )
 st.plotly_chart(fig)
