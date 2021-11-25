@@ -44,14 +44,9 @@ if all:
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
 st.write(pr_phys)
-fig = px.scatter_geo(pr_phys, lat = 'lat', lon = 'lon')
-st.plotly_chart(fig)
-
-st.map(pr_phys)
 
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
 st.write(st.secrets["MAPBOX_TOKEN"])
-
 fig = px.scatter_mapbox(pr_phys,
                         lat=pr_phys.lat,
                         lon=pr_phys.lon,
