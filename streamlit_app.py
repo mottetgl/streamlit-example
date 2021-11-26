@@ -60,7 +60,7 @@ fig.update_traces(
         'Street:      %{customdata[6]}',
     ])
 )
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width = True)
 # figure = px.scatter_mapbox(pr_phys,
 #                         lat="lat",
 #                         lon="lon",
