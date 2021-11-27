@@ -50,7 +50,7 @@ fig = px.scatter_mapbox(pr_phys,
                         lat = pr_phys.centroid_lat,
                         lon = pr_phys.centroid_lon,
                         size = 'total_allowed',
-                        custom_data = ['first_name', 'last_name', 'specialty', 'provider_city', 'state', 'provider_zip', 'provider_street1'],
+                        custom_data = ['first_name', 'last_name', 'specialty', 'provider_city', 'state', 'provider_zip', 'provider_street1', 'total_billed', 'total_allowed'],
                         zoom=1)
 fig.update_traces(
     hovertemplate='<br>'.join([
@@ -58,6 +58,9 @@ fig.update_traces(
         'Specialty: %{customdata[2]}',
         'Location:  %{customdata[3]}, %{customdata[4]} %{customdata[5]}',
         'Street:      %{customdata[6]}',
+        '<br>',
+        'Total Billed:      %{customdata[7]}',
+        'Total Allowed:      %{customdata[8]}',
     ])
 )
 st.plotly_chart(fig, use_container_width = True)
