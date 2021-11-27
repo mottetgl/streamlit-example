@@ -32,7 +32,10 @@ pr_detail = pull_pr_detail(pr_detail_infile)
 
 sel_states = st.multiselect('Select states', states)
 
-# load the data for selected states only
+# ---------------------------------------------------------------------------------------------------------------------------
+# filter the physician table ------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
+# filter on state
 @st.cache
 def pull_phys_state(filename, states):
   df = pd.read_csv(fs.open(filename))
@@ -43,7 +46,7 @@ def pull_phys_state(filename, states):
   return(df)
 pr_phys = pull_phys_state(pr_phys_infile, sel_states)
 
-# filter down to selected specialties
+# filter on specialty
 @st.cache
 def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
