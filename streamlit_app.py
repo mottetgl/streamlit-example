@@ -59,7 +59,7 @@ fig.update_traces(
         'Location:  %{customdata[3]}, %{customdata[4]} %{customdata[5]}',
         'Street:      %{customdata[6]}',
         '<br>',
-        "Total Billed:      %{${:,.2f}.format(customdata[7])}",
+        'Total Billed: ${customdata[7]:,.2f}}',
         'Total Allowed:      %{customdata[8]}',
     ])
 )
