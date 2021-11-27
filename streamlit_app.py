@@ -18,18 +18,30 @@ states = ['AK', 'AL', 'AP', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
        'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
        'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
        'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+
+-----------------------------------------------------------------------------------------------------------------------------
+# load the full physician detail file ---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+@st.cache
+def pull_pr_detail(filename):
+  df = pd.read_csv(fs.open(filename))
+  df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
+  df.index = [""] * len(df)
+  return(df)
+pr_detail = pull_pr_detail(pr_detail_infile)
+
 sel_states = st.multiselect('Select states', states)
 
 # load the data for selected states only
 @st.cache
-def filter_state(filename, states):
+def pull_phys_state(filename, states):
   df = pd.read_csv(fs.open(filename))
   df = df.loc[df.state.isin(states), :]
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   df = df[-df.zip.isna()] # REMINDER!!! EXCLUDING ROWS WITHOUT A ZIP CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   df.index = [""] * len(df)
   return(df)
-pr_phys = filter_state(pr_phys_infile, sel_states)
+pr_phys = pull_phys_state(pr_phys_infile, sel_states)
 
 # filter down to selected specialties
 @st.cache
@@ -64,23 +76,14 @@ fig.update_traces(
     ])
 )
 st.plotly_chart(fig, use_container_width = True)
-# figure = px.scatter_mapbox(pr_phys,
-#                         lat="lat",
-#                         lon="lon",
-#                         color="specialty",
-#                         size="total_allowed",
-#                         #mapbox_style="carto-positron",
-#                         color_continuous_scale=px.colors.cyclical.IceFire,
-#                         size_max=15,
-#                         zoom=10)
 
-# select an npi and cache results
+# select an npi and get both the aggregate and detailed data
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
 sel_provider_key = st.selectbox('Select provider', provider_keys)
 @st.cache
-def filter_npi(df, provider_key):
+def pull_phys_npi(df, provider_key):
   return(df[df.provider_key == provider_key])
-pr_phys_one = filter_npi(pr_phys, sel_provider_key)
+pr_phys_one = pull_phys_npi(pr_phys, sel_provider_key)
 
 # display aggregate provider info
 st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.set_precision(0))
