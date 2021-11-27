@@ -51,14 +51,17 @@ pr_phys = pull_phys_state(pr_phys_infile, sel_states)
 def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
   return(df)
-all = st.checkbox("Enable specialty filter")
-if all:
+checked = st.checkbox("Enable specialty filter")
+if checked:
   active_specialties = pr_phys.specialty.unique()
   sel_specialties = st.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
 st.write(pr_phys)
 
+# ---------------------------------------------------------------------------------------------------------------------------
+# plot scatter mapbox -------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
 st.write(st.secrets["MAPBOX_TOKEN"])
 fig = px.scatter_mapbox(pr_phys,
@@ -80,6 +83,9 @@ fig.update_traces(
 )
 st.plotly_chart(fig, use_container_width = True)
 
+# ---------------------------------------------------------------------------------------------------------------------------
+# show detail for one npi ---------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
 # select an npi and get both the aggregate and detailed data
 provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
 sel_provider_key = st.selectbox('Select provider', provider_keys)
