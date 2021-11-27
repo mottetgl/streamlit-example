@@ -59,8 +59,8 @@ fig.update_traces(
         'Location:  %{customdata[3]}, %{customdata[4]} %{customdata[5]}',
         'Street:      %{customdata[6]}',
         '<br>',
-        'Total Billed: ${customdata[7]:,.2f}}',
-        'Total Allowed:      %{customdata[8]:,.0f}',
+        'Total Billed:  $%{customdata[7]:,.0f}',
+        'Total Allowed: $%{customdata[8]:,.0f}',
     ])
 )
 st.plotly_chart(fig, use_container_width = True)
