@@ -103,5 +103,5 @@ def pull_pr_detail_npi(df, provider_key):
   df.index = [""] * len(df)
   return(df)
 pr_detail_one = pull_pr_detail_npi(pr_detail, sel_provider_key)
-wr.write(pr_detail_one)
+st.write(pr_detail_one)
 
