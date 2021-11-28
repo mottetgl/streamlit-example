@@ -65,7 +65,7 @@ st.write(pr_phys)
 
 # add option to download the data
 st.download_button(
-    label="Download data as CSV",
+    label="Download selected anomalies as CSV",
     data=pr_phys.to_csv().encode('utf-8'),
     file_name='selected_anomalous_providers.csv',
     mime='text/csv',
@@ -116,3 +116,8 @@ def pull_pr_detail_npi(df, provider_key):
 pr_detail_one = pull_pr_detail_npi(pr_detail, sel_provider_key)
 st.write(pr_detail_one)
 
+# ---------------------------------------------------------------------------------------------------------------------------
+# create anomaly details barchart -------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------
+fig = px.bar(pr_detail_one, x='total_allowed', y='hcpcs_code')
+st.plotly_chart(fig)
