@@ -75,7 +75,6 @@ st.download_button(
 # plot scatter mapbox -------------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
 px.set_mapbox_access_token(st.secrets["MAPBOX_TOKEN"])
-st.write(st.secrets["MAPBOX_TOKEN"])
 fig = px.scatter_mapbox(pr_phys,
                         lat = pr_phys.centroid_lat,
                         lon = pr_phys.centroid_lon,
@@ -120,5 +119,9 @@ st.write(pr_detail_one)
 # ---------------------------------------------------------------------------------------------------------------------------
 # create anomaly details barchart -------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
-fig = px.bar(pr_detail_one, x='total_allowed', y='hcpcs_key')
+fig = px.bar(pr_detail_one,
+             x='total_allowed',
+             y='hcpcs_key',
+             color='spec_quantile'
+             )
 st.plotly_chart(fig)
