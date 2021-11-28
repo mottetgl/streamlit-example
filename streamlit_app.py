@@ -123,7 +123,7 @@ st.write(pr_detail_one)
 # ---------------------------------------------------------------------------------------------------------------------------
 fig = px.bar(pr_detail_one,
              x='total_allowed',
-             y='hcpcs_key',
+             y='trunc_hcpcs_key',
              color='spec_quantile',
              color_continuous_scale='turbo',
              range_color=[0, 1]
