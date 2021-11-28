@@ -63,6 +63,14 @@ if checked:
 
 st.write(pr_phys)
 
+# add option to download the data
+csv = convert_df(pr_phys)
+st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name='selected_anomalous_providers.csv',
+    mime='text/csv',
+)
 # ---------------------------------------------------------------------------------------------------------------------------
 # plot scatter mapbox -------------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
