@@ -88,7 +88,7 @@ fig.update_traces(
         'Specialty: %{customdata[2]}',
         'Location:  %{customdata[3]}, %{customdata[4]} %{customdata[5]}',
         'Street:      %{customdata[6]}',
-        '<br>',
+        '',
         'Total Billed:  $%{customdata[7]:,.0f}',
         'Total Allowed: $%{customdata[8]:,.0f}',
     ])
@@ -133,7 +133,7 @@ fig.update_traces(
     hovertemplate='<br>'.join([
         'HCPCS Code: %{customdata[0]}',
         'HCPCS Desc: %{customdata[1]}',
-        '<br>',
+        '',
         'Total Billed:  $%{customdata[2]:,.0f}',
         'Total Allowed: $%{customdata[3]:,.0f}',
     ])
