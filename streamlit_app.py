@@ -126,7 +126,7 @@ fig = px.bar(pr_detail_one,
              y='trunc_hcpcs_key',
              color='spec_quantile',
              color_continuous_scale='turbo',
-             custom_data = ['hcpcs_code', 'hcpcs_desc', 'total_billed', 'total_allowed', 'norm_allowed'],
+             custom_data = ['hcpcs_code', 'hcpcs_desc', 'total_billed', 'total_allowed', 'norm_allowed', 'spec_quantile'],
              range_color=[0, 1]
              )
 fig.update_traces(
