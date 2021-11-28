@@ -122,6 +122,8 @@ st.write(pr_detail_one)
 fig = px.bar(pr_detail_one,
              x='total_allowed',
              y='hcpcs_key',
-             color='spec_quantile'
+             color='spec_quantile',
+             color_continuous_scale='turbo'
              )
 st.plotly_chart(fig)
+
