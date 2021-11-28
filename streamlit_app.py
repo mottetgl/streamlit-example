@@ -95,7 +95,7 @@ fig.update_traces(
         'Total Allowed: $%{customdata[8]:,.0f}',
     ])
 )
-st.sidebar.plotly_chart(fig, use_container_width = True)
+st.plotly_chart(fig, use_container_width = True)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # show detail for one npi ---------------------------------------------------------------------------------------------------
