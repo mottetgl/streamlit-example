@@ -30,21 +30,25 @@ def pull_pr_detail(filename):
   return(df)
 pr_detail = pull_pr_detail(pr_detail_infile)
 
-sel_states = st.multiselect('Select states', states)
+@st.cache
+def pull_pr_phys(filename):
+  df = pd.read_csv(fs.open(filename))
+  df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
+  df.index = [""] * len(df)
+  return(df)
+pr_phys = pull_pr_phys(pr_phys_infile)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # filter the physician table ------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
 # filter on state
+sel_states = st.multiselect('Select states', states)
 @st.cache
-def pull_pr_phys_state(filename, states):
-  df = pd.read_csv(fs.open(filename))
+def pr_filter_state(df, states):
   df = df.loc[df.state.isin(states), :]
-  df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   df = df[-df.zip.isna()] # REMINDER!!! EXCLUDING ROWS WITHOUT A ZIP CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  df.index = [""] * len(df)
   return(df)
-pr_phys = pull_pr_phys_state(pr_phys_infile, sel_states)
+pr_phys = pr_filter_state(pr_phys, sel_states)
 
 # filter on specialty
 @st.cache
