@@ -135,7 +135,7 @@ fig.update_traces(
         'HCPCS Desc: %{customdata[1]}',
         '',
         'Total Billed:  $%{customdata[2]:,.0f}',
-        'Total Allowed: $%{customdata[3]:,.0f} (higher than %{customdata[5]:.1%} of all US providers with the same specialty',
+        'Total Allowed: $%{customdata[3]:,.0f} (higher than %{customdata[5]:.1%} of all providers with the same specialty across the US)',
         'Specialty Average Allowed: $%{customdata[4]:,.0f}',
     ])
 )
