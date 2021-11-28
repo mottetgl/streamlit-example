@@ -137,7 +137,7 @@ fig.update_traces(
         'Total Billed:  $%{customdata[2]:,.0f}',
         'Total Allowed: $%{customdata[3]:,.0f}',
         'Specialty Average Allowed: $%{customdata[4]:,.0f}',
-        'This provider\'s total allowed for this service is higher than %{customdata[5]:.1f} of other providers in the US within the same specialty',
+        'This provider\'s total allowed for this service is higher than %{customdata[5]:.1%} of other providers in the US within the same specialty',
     ])
 )
 st.plotly_chart(fig)
