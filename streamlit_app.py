@@ -126,7 +126,7 @@ fig = px.bar(pr_detail_one,
              y='trunc_hcpcs_key',
              color='spec_quantile',
              color_continuous_scale='turbo',
-             custom_data = ['hcpcs_code', 'hcpcs_desc', 'total_billed', 'total_allowed'],
+             custom_data = ['hcpcs_code', 'hcpcs_desc', 'total_billed', 'total_allowed', 'norm_allowed'],
              range_color=[0, 1]
              )
 fig.update_traces(
@@ -136,6 +136,7 @@ fig.update_traces(
         '',
         'Total Billed:  $%{customdata[2]:,.0f}',
         'Total Allowed: $%{customdata[3]:,.0f}',
+        'Specialty Average Allowed: $%{customdata[4]:,.0f}',
     ])
 )
 st.plotly_chart(fig)
