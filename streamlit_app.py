@@ -107,7 +107,7 @@ def pull_pr_phys_npi(df, provider_key):
 pr_phys_one = pull_pr_phys_npi(pr_phys, sel_provider_key)
 
 # display aggregate provider info
-st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.set_precision(0))
+st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.format(precision=0))
 
 @st.cache
 def pull_pr_detail_npi(df, provider_key):
