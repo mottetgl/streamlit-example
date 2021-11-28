@@ -26,6 +26,7 @@ states = ['AK', 'AL', 'AP', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL',
 def pull_pr_detail(filename):
   df = pd.read_csv(fs.open(filename))
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
+  df['hcpcs_key'] = df['hcpcs_code'].astype(str) + ':  ' + df['hcpcs_desc']
   df.index = [""] * len(df)
   return(df)
 pr_detail = pull_pr_detail(pr_detail_infile)
@@ -119,5 +120,5 @@ st.write(pr_detail_one)
 # ---------------------------------------------------------------------------------------------------------------------------
 # create anomaly details barchart -------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
-fig = px.bar(pr_detail_one, x='total_allowed', y=['hcpcs_code', 'hcpcs_desc'])
+fig = px.bar(pr_detail_one, x='total_allowed', y=['hcpcs_key'])
 st.plotly_chart(fig)
