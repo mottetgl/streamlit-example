@@ -135,9 +135,8 @@ fig.update_traces(
         'HCPCS Desc: %{customdata[1]}',
         '',
         'Total Billed:  $%{customdata[2]:,.0f}',
-        'Total Allowed: $%{customdata[3]:,.0f}',
+        'Total Allowed: $%{customdata[3]:,.0f} (higher than %{customdata[5]:.1%} of all US providers with the same specialty',
         'Specialty Average Allowed: $%{customdata[4]:,.0f}',
-        'This provider\'s total allowed for this service is higher than %{customdata[5]:.1%} of other providers in the US within the same specialty',
     ])
 )
 st.plotly_chart(fig)
