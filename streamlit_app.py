@@ -127,7 +127,11 @@ fig = px.bar(pr_detail_one,
              color='spec_quantile',
              color_continuous_scale='turbo',
              custom_data = ['hcpcs_code', 'hcpcs_desc', 'total_billed', 'total_allowed', 'norm_allowed', 'spec_quantile'],
-             range_color=[0, 1]
+             range_color=[0, 1],
+             labels={'total_allowed': 'Allowed',
+                     'trunc_hcpcs_key': 'HCPCS',
+                     'spec_quantile': 'Percentile'
+                    }
              )
 fig.update_traces(
     hovertemplate='<br>'.join([
