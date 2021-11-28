@@ -62,13 +62,13 @@ def filter_specialty(df, specialties):
 checked = st.checkbox("Enable specialty filter")
 if checked:
   active_specialties = pr_phys.specialty.unique()
-  sel_specialties = st.multiselect('Select specialties', active_specialties)
+  sel_specialties = st.sidebar.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
 st.write(pr_phys)
 
 # add option to download the data
-st.download_button(
+st.sidebar.download_button(
     label="Download selected anomalies as CSV",
     data=pr_phys.to_csv().encode('utf-8'),
     file_name='selected_anomalous_providers.csv',
@@ -95,7 +95,7 @@ fig.update_traces(
         'Total Allowed: $%{customdata[8]:,.0f}',
     ])
 )
-st.plotly_chart(fig, use_container_width = True)
+st.sidebar.plotly_chart(fig, use_container_width = True)
 
 # ---------------------------------------------------------------------------------------------------------------------------
 # show detail for one npi ---------------------------------------------------------------------------------------------------
