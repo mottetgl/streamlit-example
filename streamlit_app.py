@@ -111,6 +111,7 @@ st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 't
 @st.cache
 def pull_pr_detail_npi(df, provider_key):
   df = df[df.provider_key == provider_key]
+  df.sort_values(by = 'total_allowed', inplace = True)
   df.index = [""] * len(df)
   return(df)
 pr_detail_one = pull_pr_detail_npi(pr_detail, sel_provider_key)
