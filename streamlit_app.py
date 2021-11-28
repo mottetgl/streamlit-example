@@ -124,7 +124,8 @@ fig = px.bar(pr_detail_one,
              x='total_allowed',
              y='hcpcs_key',
              color='spec_quantile',
-             color_continuous_scale='turbo'
+             color_continuous_scale='turbo',
+             range_color=[0, 1]
              )
 st.plotly_chart(fig)
 
