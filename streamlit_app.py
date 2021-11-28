@@ -59,7 +59,7 @@ pr_phys = pr_filter_state(pr_phys, sel_states)
 def filter_specialty(df, specialties):
   df = df.loc[df.specialty.isin(specialties), :]
   return(df)
-checked = st.checkbox("Enable specialty filter")
+checked = st.sidebar.checkbox("Enable specialty filter")
 if checked:
   active_specialties = pr_phys.specialty.unique()
   sel_specialties = st.sidebar.multiselect('Select specialties', active_specialties)
