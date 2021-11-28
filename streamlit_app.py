@@ -5,6 +5,8 @@ import plotly.express as px
 import s3fs
 import os
 
+st.set_page_config(layout='wide')
+
 # Create connection object.
 fs = s3fs.S3FileSystem(anon=False)
 
