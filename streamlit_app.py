@@ -126,7 +126,17 @@ fig = px.bar(pr_detail_one,
              y='trunc_hcpcs_key',
              color='spec_quantile',
              color_continuous_scale='turbo',
+             custom_data = ['hcpcs_code', 'hcpcs_desc', 'total_billed', 'total_allowed'],
              range_color=[0, 1]
              )
+fig.update_traces(
+    hovertemplate='<br>'.join([
+        'HCPCS Code: %{customdata[0]}',
+        'HCPCS Desc: %{customdata[1]}',
+        '<br>',
+        'Total Billed:  $%{customdata[2]:,.0f}',
+        'Total Allowed: $%{customdata[3]:,.0f}',
+    ])
+)
 st.plotly_chart(fig)
 
