@@ -46,7 +46,7 @@ pr_phys = pull_pr_phys(pr_phys_infile)
 # filter the physician table ------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
 # filter on state
-sel_states = st.sidebar.multiselect('Select states', states)
+sel_states = st.sidebar.multiselect('Select states', states, states)
 @st.cache
 def pr_filter_state(df, states):
   df = df.loc[df.state.isin(states), :]
