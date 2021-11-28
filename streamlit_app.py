@@ -27,6 +27,7 @@ def pull_pr_detail(filename):
   df = pd.read_csv(fs.open(filename))
   df['provider_key'] = df['npi'].astype(str) + '  /  ' + df['first_name'] + ' ' + df['last_name'] + '  /  ' + df['specialty']
   df['hcpcs_key'] = df['hcpcs_code'].astype(str) + ':  ' + df['hcpcs_desc']
+  df['trunc_hcpcs_key'] = df['hcpcs_key'].apply(lambda x: x if len(x) < 35 else x[:35] + '...')
   df.index = [""] * len(df)
   return(df)
 pr_detail = pull_pr_detail(pr_detail_infile)
