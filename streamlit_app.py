@@ -83,7 +83,9 @@ fig = px.scatter_mapbox(pr_phys,
                         lon = pr_phys.centroid_lon,
                         size = 'total_allowed',
                         custom_data = ['first_name', 'last_name', 'specialty', 'provider_city', 'state', 'provider_zip', 'provider_street1', 'total_billed', 'total_allowed'],
-                        zoom=1)
+                        zoom = 4,
+                        height = 800,
+                        width = 800)
 fig.update_traces(
     hovertemplate='<br>'.join([
         'Name:      %{customdata[0]} %{customdata[1]}',
