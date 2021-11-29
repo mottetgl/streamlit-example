@@ -65,7 +65,7 @@ if checked:
   sel_specialties = st.sidebar.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
-st.write(pr_phys)
+#st.write(pr_phys)
 
 # add option to download the data
 st.sidebar.download_button(
@@ -112,7 +112,7 @@ with st.expander("Show Anomaly Details (Single Provider)"):
   pr_phys_one = pull_pr_phys_npi(pr_phys, sel_provider_key)
 
   # display aggregate provider info
-  st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.format(precision=0))
+  #st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.format(precision=0))
   
   @st.cache
   def pull_pr_detail_npi(df, provider_key):
@@ -121,7 +121,7 @@ with st.expander("Show Anomaly Details (Single Provider)"):
     df.index = [""] * len(df)
     return(df)
   pr_detail_one = pull_pr_detail_npi(pr_detail, sel_provider_key)
-  st.write(pr_detail_one)
+  #st.write(pr_detail_one)
   
   # ---------------------------------------------------------------------------------------------------------------------------
   # create anomaly details barchart -------------------------------------------------------------------------------------------
