@@ -83,7 +83,8 @@ fig = px.scatter_mapbox(pr_phys,
                         lon = pr_phys.centroid_lon,
                         size = 'total_allowed',
                         custom_data = ['first_name', 'last_name', 'specialty', 'provider_city', 'state', 'provider_zip', 'provider_street1', 'total_billed', 'total_allowed'],
-                        zoom = 2,
+                        zoom = 3,
+                        center = dict(lon = 37.0902, lat = 95.7129)
                         height = 800,
                         width = 800)
 fig.update_traces(
