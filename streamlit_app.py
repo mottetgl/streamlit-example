@@ -105,6 +105,7 @@ st.plotly_chart(fig)
 # ---------------------------------------------------------------------------------------------------------------------------
 # show detail for one npi ---------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------------
+st.header('Anomaly Detail (One Provider)')
 # select an npi
 with st.expander("Show Anomaly Details (Single Provider)"):
   provider_keys = pr_phys.groupby(['provider_key', 'total_allowed']).size().reset_index().sort_values(by = 'total_allowed', ascending = False)['provider_key'] 
