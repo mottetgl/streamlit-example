@@ -64,7 +64,7 @@ def filter_specialty(df, specialties):
   return(df)
 checked = st.sidebar.checkbox("Enable specialty filter")
 if checked:
-  active_specialties = pr_phys.specialty.unique()
+  active_specialties = pr_phys.specialty.unique().sort_values()
   sel_specialties = st.sidebar.multiselect('Select specialties', active_specialties)
   pr_phys = filter_specialty(pr_phys, sel_specialties)
 
