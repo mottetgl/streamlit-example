@@ -133,7 +133,8 @@ fig = px.bar(pr_detail_one,
              labels={'total_allowed': 'Allowed',
                      'trunc_hcpcs_key': 'HCPCS',
                      'spec_quantile': 'Percentile'
-                    }
+                    },
+             width=800, height=800
              )
 fig.update_traces(
     hovertemplate='<br>'.join([
