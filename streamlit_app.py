@@ -124,6 +124,7 @@ with st.expander("Show Anomaly Details (Single Provider)"):
   c4.subheader(pr_phys_one.provider_city + ', ' + pr_phys_one.state)
   c1, c2, c3, c4 = st.columns(4)
   c1.subheader(pr_phys_one.total_allowed)
+  c2.subheader(pr_phys_one.total_billed)
 
   
   @st.cache
