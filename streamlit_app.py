@@ -162,5 +162,5 @@ with st.expander("Show Anomaly Details (Single Provider)"):
           'Specialty Average Allowed: $%{customdata[4]:,.0f}',
       ])
   )
-  st.plotly_chart(fig, use_column_width = True)
+  st.plotly_chart(fig, use_container_width = True)
 
