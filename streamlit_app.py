@@ -123,7 +123,7 @@ with st.expander("Show Anomaly Details (Single Provider)"):
   c3.subheader(pr_phys_one.specialty)
   c4.subheader(pr_phys_one.provider_city + ', ' + pr_phys_one.state)
   c1.subheader(pr_phys_one.total_billed)
-  c1.subheader(pr_phys_one.total_allowed, anchor = 'test')
+  c1.subheader(pr_phys_one.total_allowed)
   c2.subheader('spec avg billed here')
   c2.subheader('spec avg allowed here')
   
