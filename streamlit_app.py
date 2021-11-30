@@ -117,7 +117,7 @@ with st.expander("Show Anomaly Details (Single Provider)"):
 
   # display aggregate provider info
   #st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.format(precision=0))
-  st.write(pr_detail_one.first_name)
+  st.write(pr_phys_one.first_name)
   
   @st.cache
   def pull_pr_detail_npi(df, provider_key):
