@@ -150,7 +150,7 @@ with st.expander("Show Anomaly Details (Single Provider)"):
                        'trunc_hcpcs_key': 'HCPCS',
                        'spec_quantile': 'Percentile'
                       },
-               width=800, height=800
+               width=800, height=1200
                )
   fig.update_traces(
       hovertemplate='<br>'.join([
