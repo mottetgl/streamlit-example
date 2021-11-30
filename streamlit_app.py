@@ -117,12 +117,13 @@ with st.expander("Show Anomaly Details (Single Provider)"):
 
   # display aggregate provider info
   #st.write(pr_phys_one.loc[:, ['first_name', 'last_name', 'specialty', 'state', 'total_billed', 'total_allowed']].style.format(precision=0))
-  c1, c2, c3, c4, c5 = st.columns(5)
+  c1, c2, c3, c4 = st.columns(4)
   c1.subheader(pr_phys_one.first_name)
   c2.subheader(pr_phys_one.last_name)
   c3.subheader(pr_phys_one.specialty)
-  c4.subheader(pr_phys_one.provider_city)
-  c5.subheader(pr_phys_one.state)
+  c4.subheader(pr_phys_one.provider_city + ', ' + pr_phys_one.state)
+  c1, c2, c3, c3 = st.columns(4)
+  c1.subheader(pr_phys_one.total_allowed)
 
   
   @st.cache
